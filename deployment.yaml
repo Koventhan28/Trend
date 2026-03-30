@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trend
+  name: trend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: trend
+    spec:
+      containers:
+      - image: koventhan/trend:latest
+        name: trend
+        ports:
+        - containerPort: 3000 
+        resources: {}
