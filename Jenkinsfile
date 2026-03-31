@@ -10,16 +10,12 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'Dockerregistry'
       }
     stages {
-        stage('Checkout Code') {
-            steps {
-                git url: 'https://github.com/your-org/your-repo.git', branch: 'master'
-            }
-        }
+        
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "pwd;ls -ltrh "
+                    sh "git clone "
                     sh "docker build -f Dockerfile -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
