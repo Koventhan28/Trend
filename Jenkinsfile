@@ -8,6 +8,7 @@ pipeline {
         IMAGE_URI = "${DOCKERHUB_REGISTRY}/${IMAGE_NAME}:${TAG}"
         // Replace with your Jenkins Docker Hub credentials ID
         DOCKERHUB_CREDENTIALS_ID = 'Dockerregistry'
+      }
     stages {
         stage('Checkout Code') {
             steps {
@@ -35,7 +36,7 @@ pipeline {
                 }
             }
         
-
+        }
         stage('Deploy to EKS') {
             steps {
                 script {
