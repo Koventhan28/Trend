@@ -10,13 +10,17 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'Dockerregistry'
       }
     stages {
-        
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/Koventhan28/Trend.git', branch: 'master'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "git clone "
-                    sh "docker build -f Dockerfile -t ${IMAGE_NAME}:${TAG} ."
+                    sh "pwd;ls -ltrh"
+                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
         }
