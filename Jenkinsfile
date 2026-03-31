@@ -1,12 +1,5 @@
 pipeline {
     agent any
-   
-    environment {
-        AWS_REGION = 'us-east-1'
-        ECR_REPO = 'koventhan/trend'
-        DOCKER_IMAGE_NAME = '<Your-IMG-NAME>'
-        KUBECONFIG = "/var/lib/jenkins/.kube/config" //locate in jenkins EC2 serevr
-    }
     environment {
         // Replace with your Docker Hub username and repo name
         DOCKERHUB_REGISTRY = 'docker.io'
