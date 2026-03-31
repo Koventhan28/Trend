@@ -19,7 +19,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    sh "pwd;ls -ltrh "
+                    sh "docker build -f Dockerfile -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
         }
