@@ -5,6 +5,7 @@ pipeline {
         DOCKERHUB_REGISTRY = 'docker.io'
         IMAGE_NAME = 'koventhan/trend'
         TAG = "latest"
+        AWS_CREDENTIALS = credentials('AWS-Credentials')
         IMAGE_URI = "${DOCKERHUB_REGISTRY}/${IMAGE_NAME}:${TAG}"
         // Replace with your Jenkins Docker Hub credentials ID
         DOCKERHUB_CREDENTIALS_ID = 'Dockerregistry'
@@ -41,7 +42,6 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
-                    withAWS(credentials: 'AWS-Credentials')
                     sh "aws sts get-caller-identity"
                     sh 'aws eks update-kubeconfig --name mycluster --region us-east-1'
                     // Update the deployment manifest with the new image URI
