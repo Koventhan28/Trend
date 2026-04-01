@@ -41,6 +41,9 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
+                    withAWS(credentials: 'AWS-Credentials')
+                    sh "aws sts get-caller-identity"
+                    sh 'aws eks update-kubeconfig --name mycluster --region us-east-1'
                     // Update the deployment manifest with the new image URI
                     // sh "sed -i 's|your_image_placeholder|${IMAGE_NAME}:${TAG}|g' deployment.yaml"
                     // Apply changes to EKS cluster
