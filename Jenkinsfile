@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "pwd;ls -ltrh"
+                    
                     sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
@@ -42,9 +42,10 @@ pipeline {
             steps {
                 script {
                     // Update the deployment manifest with the new image URI
-                    sh "sed -i 's|your_image_placeholder|${IMAGE_NAME}:${TAG}|g' deployment.yaml"
+                    // sh "sed -i 's|your_image_placeholder|${IMAGE_NAME}:${TAG}|g' deployment.yaml"
                     // Apply changes to EKS cluster
                     sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
                 }
             }
         }
