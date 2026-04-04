@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
-                     withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS-Credentials' ]])
+                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS-Credentials' ]]){
                     sh "aws sts get-caller-identity"
                     sh 'aws eks update-kubeconfig --name mycluster --region us-east-1'
                     // Update the deployment manifest with the new image URI
@@ -52,6 +52,7 @@ pipeline {
                     // Apply changes to EKS cluster
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl apply -f service.yaml"
+                }
                 }
             }
         }
