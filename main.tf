@@ -92,6 +92,10 @@ Jenkins_installation = <<-EOF
             sudo yum install jenkins -y
             sudo systemctl enable jenkins
             sudo systemctl start jenkins
+            sudo yum install git 
+            sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            sudo chmod +x ./kubectl
+            sudo mv ./kubectl /usr/local/bin/kubectl
             EOF
 }
 ############################
