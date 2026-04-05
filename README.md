@@ -1,5 +1,6 @@
 # This is the  Repository link for downloading the repo: https://github.com/Koventhan28/Trend.git
 # Once you clone the Repository move to the directory and use the below commands commands 
+===============================================================
 If you want to locally build the docker images you can use the just use the below command 
 # docker build -t <image-name>:<version> .
 Once the images is build you can check the images details using the 
@@ -8,7 +9,7 @@ You can use the below command to run the docker locally
 # docker run -p 80:3000 -d <image-name>
 Can access the site in the localhost using 
 http:\\localhost:3000
-
+===============================================================
 For the infrastrucute to work,you can use the below link to install terraform 
 # https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 we have a main.tf file for Deploying the Infrastructure i.e Deploying jenkins in an EC2 Instance.
@@ -33,6 +34,10 @@ Similarly for adding the AWS credentials you need to have aws-credentials plugin
 
 Creating the EKS cluster from the local machine using below command 
 # eksctl create cluster   --name mycluster   --region us-east-1   --nodes 1   --node-type t2.medium   --nodes-min 1   --nodes-max 
+
+You can use the below command to get the cluster is its created and the kubectl command to check if the instance is up
+# eksctl get cluster
+# kubectl get nodes
 
 Once the Trend Application jenkins-pipeline is created
 # add the github project detail and the github hook trigger with the Pipeline with SCM option for building the Jenkinspipeline
