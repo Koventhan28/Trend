@@ -1,0 +1,5 @@
+.terraform*
+trend-application-setup.docx
+terraform.tf*
+.~lock.trend-application-setup.docx#
+lock.trend-application-setup.docx

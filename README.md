@@ -1,92 +1,43 @@
-DevOps Practice Project – Dist Directory
+# This is the  Repository link for downloading the repo: https://github.com/Koventhan28/Trend.git
+# Once you clone the Repository move to the directory and use the below commands commands 
+If you want to locally build the docker images you can use the just use the below command 
+# docker build -t <image-name>:<version> .
+Once the images is build you can check the images details using the 
+# docker images <image-name>
+You can use the below command to run the docker locally
+# docker run -p 80:3000 -d <image-name>
+Can access the site in the localhost using 
+http:\\localhost:3000
 
-This repository contains the production-ready build files (dist folder) for DevOps practice and deployment exercises.
+For the infrastrucute to work,you can use the below link to install terraform 
+# https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+we have a main.tf file for Deploying the Infrastructure i.e Deploying jenkins in an EC2 Instance.
+Below are the set of command for initialing,planning and deploying the jenkins infrastruture.
+# terraform init
+Using the below command for checking if the configuration is working 
+# terraform plan 
+We are using auto-approve since instead of manually approving the configuration
+# terraform apply -auto-approve
 
-It is intentionally structured to help learners focus on CI/CD pipelines, hosting, containerization, and infrastructure setup rather than application development.
+Once the Jenkins is up and running on the AWS cloud .for the first time you need to get the credentials from the 
+/var/lib/jenkins/secrets/initialAdminPassword
 
-📁 What This Repository Contains
+Connect to the ec2 instance and get the initial credentails and provide the basic steps for login to jenkins
 
-dist/ – Compiled and production-ready static files
+Login to Jenkins and create the admin user and credentials.
 
-HTML
+For adding the Docker hub credentails which is used for building the pushing the container to dockerhub
+# Manage Jenkins-> Credentials -> Add-Credentials -> Username and password
+Similarly for adding the AWS credentials you need to have aws-credentials plugin installed
+# Manage Jenkins-> Credentials -> Add-Credentials -> AWS Credential
 
-CSS
+Creating the EKS cluster from the local machine using below command 
+# eksctl create cluster   --name mycluster   --region us-east-1   --nodes 1   --node-type t2.medium   --nodes-min 1   --nodes-max 
 
-JavaScript
+Once the Trend Application jenkins-pipeline is created
+# add the github project detail and the github hook trigger with the Pipeline with SCM option for building the Jenkinspipeline
 
-Assets (images, fonts, etc.)
+For Linking the github webhook with jenkins
+# Go Github Repo -> Settings->Webhooks-> Add-Weebhook
+Add the jenkins website link with /github-webhook/ at the end and once its added it will show for succesfull for a push request.
 
-These files are ready to deploy to:
-
-Web servers (Nginx / Apache)
-
-Cloud platforms (AWS S3, Azure Blob, GCP Storage)
-
-Containerized environments (Docker + Nginx)
-
-Kubernetes clusters
-
-CI/CD pipeline demonstrations
-
-🎯 Purpose of This Repository
-
-This repository is designed for:
-
-DevOps beginners
-
-CI/CD practice
-
-Deployment pipeline testing
-
-Docker & Kubernetes deployment exercises
-
-Web server configuration practice
-
-Reverse proxy and load balancer setup
-
-The goal is to simulate real-world deployment scenarios using already built application files.
-
-❓ Why is there NO package.json?
-
-You may notice that this repository does not include:
-
-package.json
-
-node_modules
-
-Source code (src/)
-
-Build tools configuration
-
-✅ Reason:
-
-This repository only contains the final production build output (dist), not the development source code.
-
-In a typical project:
-
-Developers write source code.
-
-The project is built using tools like:
-
-Node.js
-
-Webpack
-
-Vite
-
-React (or other frameworks)
-
-A dist/ folder is generated.
-
-Only the production build is deployed to servers.
-
-This repository represents step 4 only.
-
-Since this is already the compiled output:
-
-No dependencies are required
-
-No build process is required
-
-No package.json is needed
-# Trend
