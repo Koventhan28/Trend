@@ -92,10 +92,18 @@ Jenkins_installation = <<-EOF
             sudo yum install jenkins -y
             sudo systemctl enable jenkins
             sudo systemctl start jenkins
-            sudo yum install git 
+            sudo yum install git -y
+            sudo yum install docker -y 
+            sudo systemctl enable docker 
+            sudo systemctl start docker 
+            sudo usermod -aG docker jenkins
             sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
             sudo chmod +x ./kubectl
             sudo mv ./kubectl /usr/local/bin/kubectl
+            sudo wget https://get.helm.sh/helm-v3.15.1-linux-amd64.tar.gz
+            sudo tar -zxvf helm-v3.15.1-linux-amd64.tar.gz
+            sudo mv linux-amd64/helm /usr/local/bin/helm
+            helm version
             EOF
 }
 ############################
