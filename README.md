@@ -63,3 +63,27 @@ Go Github Repo -> Settings->Webhooks-> Add-Weebhook
 ```
 Add the jenkins website link with /github-webhook/ at the end and once its added it will show for succesful for a push request.
 Once git push happens the pipeline automatically starts and Pipeline runs for building,Pushing and the Deploying the application to EKS
+
+# Monitoring
+
+Make sure you install the helm on the servers before you proceed on installing the prometheus and grafana
+```
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+kubectl create namespace prometheus
+kubectl get ns
+helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+kubectl get pods -n prometheus
+kubectl get svc -n prometheus
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+Modify the type of the kubenetes service from ClusterIp to LoadBalancer
+kubectl get svc -n prometheus
+kubectl edit svc stable-grafana -n prometheus
+Modify the type of the kubenetes service from ClusterIp to LoadBalancer
+kubectl get svc -n prometheus
+```
+
+The below command is for getting the credentail for the fist time login on the server and the login username for the grafana will be admin
+```
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
